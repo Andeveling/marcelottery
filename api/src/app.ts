@@ -2,7 +2,7 @@ import express from "express"
 import config from "./config"
 import morgan from "morgan"
 import cors from "cors"
-import { Admin, Participant, Raffle, Ticket } from "@routes/index"
+import * as routes from "../src/routes"
 
 export const app = express()
 // CONFIG
@@ -15,9 +15,10 @@ app.use(express.urlencoded({ extended: false }))
 app.use(morgan("dev"))
 
 // ROUTES
-app.use(Admin)
-app.use(Raffle)
-app.use(Ticket)
-app.use(Participant)
+app.use(routes.Auth)
+app.use(routes.Admin)
+app.use(routes.Raffle)
+app.use(routes.Ticket)
+app.use(routes.Participant)
 
 export default app

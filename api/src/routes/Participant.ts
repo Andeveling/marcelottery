@@ -1,5 +1,5 @@
 import { Router } from "express"
-import * as ParticipantCtrl from "@controllers/Participant"
+import * as ParticipantCtrl from "../controllers"
 
 const participant = Router()
 

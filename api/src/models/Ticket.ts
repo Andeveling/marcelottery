@@ -3,14 +3,13 @@ import { TicketI } from "../../types"
 
 export const TicketSchema = new Schema<TicketI>(
   {
-    position: { type: String },
-    participant: { type: Schema.Types.ObjectId, ref: "Participant" },
-    raffle: { type: Schema.Types.ObjectId, ref: "Raffle" },
+    positions: { type: Number, indexes: true },
+    participant: { type: Schema.Types.ObjectId, ref: "Participant", default: null },
+    raffle: { type: Schema.Types.ObjectId, ref: "Raffle", required: true },
     taken: { type: Boolean, default: false },
     pay: { type: Boolean, default: false },
-    price: { type: Number },
   },
-  { timestamps: true }
+  { timestamps: true, versionKey: false }
 )
 
 export default model("Ticket", TicketSchema)

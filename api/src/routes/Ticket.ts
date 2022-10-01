@@ -1,5 +1,5 @@
 import { Router } from "express"
-import * as ticketCtrl from "@controllers/Tickets"
+import * as ticketCtrl from "../controllers"
 const ticket = Router()
 
 ticket.get("/tickets", ticketCtrl.getTickets)
