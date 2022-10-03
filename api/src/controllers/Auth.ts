@@ -21,7 +21,7 @@ export const login: RequestHandler = async (req, res) => {
           const token = jsonwebtoken.sign({ id: admin._id }, config.JWT_TOKEN, {
             expiresIn: 60 * 60 * 24,
           })
-          const result = { auth: true, token: token }
+          const result = { id: admin._id, auth: true, username: admin.username, token: token }
           return res.json(result)
         } else {
           // response is OutgoingMessage object that server response http request
