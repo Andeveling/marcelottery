@@ -1,4 +1,4 @@
-import { api } from '../api/api'
+import { apiSlice } from '../api/apiSlice'
 
 export interface UserI {
   id: string
@@ -15,7 +15,7 @@ export interface LoginRequestI {
   password: string
 }
 
-export const authApi = api.injectEndpoints({
+export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<UserResponseI, LoginRequestI>({
       query: (credentials) => ({

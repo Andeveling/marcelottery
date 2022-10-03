@@ -1,6 +1,4 @@
-import { RootState } from '@/app/store'
-import { AuthState } from '@/features/auth/authSlice'
-import { useSelector } from 'react-redux'
+import { useAuth } from '@/hooks'
 import { Navigate, Outlet } from 'react-router-dom'
 import { PrivateRoutes, PublicRoutes } from '../routes'
 
@@ -12,8 +10,8 @@ const PrivateValidationFragment = <Outlet />
 const PublicValidationFragment = <Navigate replace to={PrivateRoutes.PRIVATE} />
 
 export const AuthGuard = ({ privateValidation }: Props) => {
-  const authState: AuthState = useSelector((store: RootState) => store.auth)
-  return authState.username ? (
+  const auth = useAuth()
+  return auth.username ? (
     privateValidation ? (
       PrivateValidationFragment
     ) : (

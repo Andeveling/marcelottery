@@ -1,8 +1,9 @@
 import { useLoginMutation } from '@/app/services'
 import { Copyright } from '@/components'
 import { setCredentials } from '@/features/auth/authSlice'
+import { useAuth } from '@/hooks'
 import { useAppDispatch } from '@/hooks/useAppDispatch'
-import { PublicRoutes } from '@/routes'
+import { PrivateRoutes, PublicRoutes } from '@/routes'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -15,13 +16,19 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useFormik } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate, Navigate } from 'react-router-dom'
 import { loginValidations } from './loginValidation'
 
 export default function SignIn() {
   const [login, { isLoading, isError, isSuccess, error }] = useLoginMutation()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const auth = useAuth()
+
+  useEffect(() => {
+    if (auth.username) navigate(`/${PrivateRoutes.PRIVATE}`)
+  }, [])
 
   const formik = useFormik({
     initialValues: {
@@ -33,14 +40,16 @@ export default function SignIn() {
       try {
         const user = await login(credentials).unwrap()
         dispatch(setCredentials(user))
-        navigate(PublicRoutes.HOME)
+        navigate(`/${PrivateRoutes.PRIVATE}`)
       } catch (e) {
         console.log(error)
       }
     },
   })
 
-  return (
+  return auth.username ? (
+    <></>
+  ) : (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <Box

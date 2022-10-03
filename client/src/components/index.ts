@@ -1,6 +1,7 @@
 export * from './Copyright'
 export * from './Layout'
 export * from './Login'
+export * from './Logout'
 export * from './Navbar'
 export { default as TicketCard } from './TicketCard/TicketCard'
 export { default as TicketsContainer } from './TicketsContainer/TicketsContainer'
