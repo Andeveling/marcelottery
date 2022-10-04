@@ -1,4 +1,6 @@
 export * from "./Admin"
+export * from "./Auth"
+export * from "./Lottery"
 export * from "./Participant"
 export * from "./Raffle"
 export * from "./Tickets"

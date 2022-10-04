@@ -3,9 +3,10 @@ import { RaffleI } from "../../types"
 
 const RaffleSchema = new Schema<RaffleI>(
   {
-    lottery: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String },
+    datePlayLottery: [{ type: Schema.Types.ObjectId, ref: "DayPlayLottery", default: null }],
     tickets: [{ type: Schema.Types.ObjectId, ref: "Ticket", default: null }],
-    datePlay: { type: Date },
     reward: { type: String },
     admin: { type: Schema.Types.ObjectId, ref: "Admin" },
     price: { type: Number },

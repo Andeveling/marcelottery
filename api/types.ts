@@ -35,13 +35,23 @@ export interface TicketI {
   pay: boolean
   taken: boolean
 }
+export interface LotteryI {
+  id: string | number
+  title: string
+}
+export interface DatePlayLotteryI {
+  id: string | number
+  date: Date
+  lottery: Types.ObjectId
+}
 export interface RaffleI {
   id: number | string
+  title: string
+  description: string
   tickets: Types.ObjectId[]
   ticketsPrice: number
-  datePlay: Date
   reward: string
-  lottery: string
+  datePlayLottery: Types.ObjectId[]
   admin: Types.ObjectId
   price: number
 }

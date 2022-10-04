@@ -15,8 +15,9 @@ app.use(express.urlencoded({ extended: false }))
 app.use(morgan("dev"))
 
 // ROUTES
-app.use(routes.Auth)
 app.use(routes.Admin)
+app.use(routes.Auth)
+app.use(routes.Lottery)
 app.use(routes.Raffle)
 app.use(routes.Ticket)
 app.use(routes.Participant)

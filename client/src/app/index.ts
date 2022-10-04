@@ -1,4 +1,6 @@
+export * from './index'
 export * from './services/api'
 export * from './services/auth'
-export * from './services'
+export * from './services/lottery'
+export * from './services/raffle'
 export * from './store'
