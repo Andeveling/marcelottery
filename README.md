@@ -3,7 +3,7 @@
 Un proyecto full stack para gestionar sorteos tradicionales, donde pongo en práctica varios de mis conocimientos a día de hoy.
 
 
-## 📝 Caracteristicas
+## 📝 Características 
 
 - Responsive
 - Panel de Admin para gestión
