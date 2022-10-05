@@ -1,6 +1,3 @@
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
-
-
 # Marcelottery
 
 Un proyecto full stack para gestionar sorteos tradicionales, donde pongo en práctica varios de mis conocimientos a día de hoy.
