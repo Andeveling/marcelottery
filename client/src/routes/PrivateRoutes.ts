@@ -4,4 +4,5 @@ export enum PrivateRoutes {
   DASHBOARD_HOME = 'home',
   DASHBOARD_HISTORY = 'history',
   DASHBOARD_SETTINGS = 'settings',
+  DASHBOARD_LOTTERY = 'lottery',
 }

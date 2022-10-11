@@ -1,3 +1,8 @@
 export * from './Home'
+export * from './Private/Dashboard/Lottery'
+export * from './Private/Dashboard/MenuDashboard'
+export * from './Private/Dashboard/Modal'
+export * from './Private/Dashboard/Submenu'
 export * from './Private/Dashboard'
 export { default as Private } from './Private/Private'
+export * from './index'

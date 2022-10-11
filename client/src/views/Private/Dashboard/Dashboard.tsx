@@ -39,7 +39,7 @@ export default function Dashboard(props: Props) {
       <Divider />
       <MenuDashboard handleDrawerToggle={handleDrawerToggle} />
       <Divider />
-      <Submenu />
+      <Submenu handleDrawerToggle={handleDrawerToggle} />
     </div>
   )
 

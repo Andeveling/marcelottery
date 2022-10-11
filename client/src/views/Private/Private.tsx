@@ -6,6 +6,7 @@ import { Navigate, Route } from 'react-router-dom'
 // Lazy
 const Dashboard = lazy(() => import('./Dashboard/Dashboard'))
 const Home = lazy(() => import('./Home/Home'))
+const Lottery = lazy(() => import('./Dashboard/Lottery/Lottery'))
 
 export default function Private() {
   return (
@@ -15,6 +16,7 @@ export default function Private() {
         <Route path={PrivateRoutes.DASHBOARD_HOME} element={<Home />} />
         <Route path={PrivateRoutes.DASHBOARD_HISTORY} element={<h2>History</h2>} />
         <Route path={PrivateRoutes.DASHBOARD_SETTINGS} element={<h2>Settings</h2>} />
+        <Route path={PrivateRoutes.DASHBOARD_LOTTERY} element={<Lottery />} />
       </Route>
     </RoutesWithNoFound>
   )

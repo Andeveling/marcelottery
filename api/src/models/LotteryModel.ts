@@ -3,7 +3,7 @@ import { LotteryI } from "../../types"
 
 const LotterySchema = new Schema<LotteryI>(
   {
-    title: { type: String, required: true, sparse: true },
+    title: { type: String, required: true, sparse: true, unique: true },
   },
   { timestamps: true, versionKey: false }
 )

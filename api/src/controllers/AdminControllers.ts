@@ -1,5 +1,5 @@
 import { RequestHandler } from "express"
-import { Admin } from "../models"
+import Admin from "../models/AdminModel"
 import bcryptjs from "bcryptjs"
 
 export const getAdmins: RequestHandler = async (_req, res) => {

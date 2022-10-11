@@ -6,7 +6,7 @@ interface PropsLayout {
 
 export default function Layout({ children }: PropsLayout) {
   return (
-    <Box component='main' sx={{ p: 3 }}>
+    <Box component='main' sx={{ p: 3, boxSizing: 'border-box' }}>
       {children}
     </Box>
   )

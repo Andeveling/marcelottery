@@ -1,10 +1,10 @@
-import { apiSlice } from '../api/apiSlice'
+import { apiSlice } from '@/app/'
 
 export const raffleApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllRaffles: builder.query({
       query: () => ({
-        url: 'login',
+        url: '/raffles',
       }),
     }),
     protected: builder.mutation<{ message: string }, void>({

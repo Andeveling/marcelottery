@@ -1,4 +1,4 @@
-import Admin from "../models/Admin"
+import Admin from "../models/AdminModel"
 import { RequestHandler } from "express"
 import bcryptjs from "bcryptjs"
 import jsonwebtoken from "jsonwebtoken"

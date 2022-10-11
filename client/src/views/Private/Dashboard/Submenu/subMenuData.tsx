@@ -5,12 +5,19 @@ import CloseIcon from '@mui/icons-material/Close'
 export const submenu = [
   {
     id: 1,
-    text: 'Nueva Rifa',
+    text: 'Loterias',
     icon: <AddCircleIcon />,
-    navigate: PrivateRoutes.DASHBOARD_HOME,
+    navigate: PrivateRoutes.DASHBOARD_LOTTERY,
   },
   {
     id: 2,
+    text: 'Rifas',
+    icon: <AddCircleIcon />,
+    navigate: PrivateRoutes.DASHBOARD_HOME,
+  },
+
+  {
+    id: 3,
     text: 'Cerrar Panel',
     icon: <CloseIcon />,
     navigate: PublicRoutes.HOME,

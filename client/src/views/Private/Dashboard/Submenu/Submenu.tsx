@@ -6,14 +6,22 @@ import ListItemText from '@mui/material/ListItemText'
 import { useNavigate } from 'react-router-dom'
 import { submenu } from './subMenuData'
 
-export default function Submenu() {
+interface Props {
+  handleDrawerToggle: () => void
+}
+
+export default function Submenu({ handleDrawerToggle }: Props) {
   const navigate = useNavigate()
+  const handleButton = (navigateRoute: string) => {
+    handleDrawerToggle()
+    navigate(navigateRoute)
+  }
   return (
     <>
       <List>
         {submenu?.map((item) => (
           <ListItem key={item.id} disablePadding>
-            <ListItemButton onClick={() => navigate(item.navigate)}>
+            <ListItemButton onClick={() => handleButton(item.navigate)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.text} />
             </ListItemButton>

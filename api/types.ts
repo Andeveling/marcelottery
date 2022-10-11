@@ -35,6 +35,8 @@ export interface TicketI {
   pay: boolean
   taken: boolean
 }
+export interface CreateTikeTicketI extends Pick<TicketI, "positions" | "raffle"> {}
+
 export interface LotteryI {
   id: string | number
   title: string
@@ -42,16 +44,19 @@ export interface LotteryI {
 export interface DatePlayLotteryI {
   id: string | number
   date: Date
+  reward: string
   lottery: Types.ObjectId
 }
+export interface CreateDatePlayLotteryI extends Pick<DatePlayLotteryI, "date" | "lottery"> {}
+
 export interface RaffleI {
   id: number | string
   title: string
   description: string
   tickets: Types.ObjectId[]
   ticketsPrice: number
-  reward: string
   datePlayLottery: Types.ObjectId[]
   admin: Types.ObjectId
   price: number
 }
+export interface CreateInitialRaffleI extends Pick<RaffleI, "title" | "description" | "admin" | "price"> {}

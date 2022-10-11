@@ -1,9 +1,17 @@
 import { apiSlice } from '../api'
 
+export interface LotteryRenderI {
+  _id: string | number
+  title: string
+}
+
 export const lotteryApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllLotteries: builder.query({
-      query: () => '/lotteries',
+    getAllLotteries: builder.query<LotteryRenderI[], void>({
+      query: () => ({
+        url: '/lotteries',
+      }),
+      providesTags: ['Lottery'],
     }),
     getLottery: builder.query({
       query: (id) => `/lottery/:${id}`,
@@ -14,12 +22,14 @@ export const lotteryApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body: lottery,
       }),
+      invalidatesTags: ['Lottery'],
     }),
-    deleteLottery: builder.mutation({
+    deleteLottery: builder.mutation<LotteryRenderI, LotteryRenderI['_id']>({
       query: (id) => ({
-        url: `/lottery/:${id}`,
+        url: `/lottery/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Lottery'],
     }),
   }),
 })

@@ -1,6 +1,6 @@
 import { authorization } from "../middleware/authorization"
 import { Router } from "express"
-import * as AdminCtrl from "../controllers/Admin"
+import * as AdminCtrl from "../controllers/AdminControllers"
 
 const admin = Router()
 

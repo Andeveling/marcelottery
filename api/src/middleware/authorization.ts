@@ -7,7 +7,7 @@ export interface CustomRequest extends Request {
   token: string | JwtPayload
 }
 
-// Authorization : Bearer <Token>
+// Authorization
 export const authorization = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.header("Authorization")?.replace("Bearer", "").trim()

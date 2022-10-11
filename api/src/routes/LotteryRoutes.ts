@@ -1,6 +1,6 @@
-import { authorization } from "@/middleware/authorization"
+import { authorization } from "../middleware/authorization"
 import { Router } from "express"
-import * as LotteryCtrl from "../controllers/Lottery"
+import * as LotteryCtrl from "../controllers/LotteryControllers"
 const lottery = Router()
 
 lottery.get("/lotteries", LotteryCtrl.getLotteries)

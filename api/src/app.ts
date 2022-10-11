@@ -15,11 +15,11 @@ app.use(express.urlencoded({ extended: false }))
 app.use(morgan("dev"))
 
 // ROUTES
-app.use(routes.Admin)
-app.use(routes.Auth)
-app.use(routes.Lottery)
-app.use(routes.Raffle)
-app.use(routes.Ticket)
-app.use(routes.Participant)
+app.use(routes.AdminRoutes)
+app.use(routes.AuthRoutes)
+app.use(routes.LotteryRoutes)
+app.use(routes.RaffleRoutes)
+app.use(routes.TicketRoutes)
+app.use(routes.ParticipantRoutes)
 
 export default app

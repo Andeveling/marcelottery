@@ -1,3 +1,7 @@
 export { default as Dashboard } from './Dashboard'
+export * from './Lottery'
 export * from './MenuDashboard'
+export * from './Modal'
+export * from './Raffle'
 export * from './Submenu'
+export * from './index'
