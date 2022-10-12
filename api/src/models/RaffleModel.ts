@@ -5,9 +5,9 @@ const RaffleSchema = new Schema<RaffleI>(
   {
     title: { type: String, required: true },
     description: { type: String },
-    datePlayLottery: [{ type: Schema.Types.ObjectId, ref: "DayPlayLottery", default: null }],
-    tickets: [{ type: Schema.Types.ObjectId, ref: "Ticket", default: null }],
-    admin: { type: Schema.Types.ObjectId, ref: "Admin" },
+    datePlayLotteryIds: [{ type: Schema.Types.ObjectId, ref: "DatePlayLottery", default: null }],
+    ticketsIds: [{ type: Schema.Types.ObjectId, ref: "Ticket", default: null }],
+    adminId: { type: Schema.Types.ObjectId, ref: "Admin" },
     price: { type: Number },
   },
   { timestamps: true, versionKey: false }

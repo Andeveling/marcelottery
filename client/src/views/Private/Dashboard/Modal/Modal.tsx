@@ -25,8 +25,9 @@ export default function FormModal({ textButton, icon, form, title, description }
         {textButton}
       </Button>
       <Modal
+        closeAfterTransition
+        sx={{ overflow: 'scroll' }}
         open={open}
-        onClose={handleClose}
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'>
         <Box sx={style}>
@@ -43,6 +44,17 @@ export default function FormModal({ textButton, icon, form, title, description }
               {description}
             </Typography>
             <Grid>{form}</Grid>
+          </Grid>
+          <Grid display={'flex'} justifyContent={'end'} maxWidth={800} container>
+            <Button
+              fullWidth
+              endIcon={<CloseIcon />}
+              variant='outlined'
+              color='error'
+              onClick={handleClose}
+              size='large'>
+              close
+            </Button>
           </Grid>
         </Box>
       </Modal>

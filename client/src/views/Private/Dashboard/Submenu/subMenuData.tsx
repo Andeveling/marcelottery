@@ -13,7 +13,7 @@ export const submenu = [
     id: 2,
     text: 'Rifas',
     icon: <AddCircleIcon />,
-    navigate: PrivateRoutes.DASHBOARD_HOME,
+    navigate: PrivateRoutes.DASHBOARD_RAFFLES,
   },
 
   {

@@ -1,16 +1,23 @@
 import { apiSlice } from '@/app/'
+import { RaffleI } from '@/types'
 
 export const raffleApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getAllRaffles: builder.query({
+    getAllRaffles: builder.query<RaffleI[], void>({
       query: () => ({
         url: '/raffles',
       }),
+      providesTags: ['Raffle'],
     }),
-    protected: builder.mutation<{ message: string }, void>({
-      query: () => 'protected',
+    createRaffle: builder.mutation({
+      query: (body) => ({
+        url: '/raffles',
+        method: 'POST',
+        body,
+      }),
+      invalidatesTags: ['Raffle'],
     }),
   }),
 })
 
-export const { useGetAllRafflesQuery } = raffleApiSlice
+export const { useGetAllRafflesQuery, useCreateRaffleMutation } = raffleApiSlice
