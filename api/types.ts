@@ -44,19 +44,19 @@ export interface LotteryI {
 export interface DatePlayLotteryI {
   id: string | number
   date: Date
-  reward: string
-  lottery: Types.ObjectId
+  reward: string | number
+  lotteryId: Types.ObjectId
 }
-export interface CreateDatePlayLotteryI extends Pick<DatePlayLotteryI, "date" | "lottery"> {}
+export interface CreateDatePlayLotteryI extends Pick<DatePlayLotteryI, "date" | "lotteryId"> {}
 
 export interface RaffleI {
   id: number | string
   title: string
   description: string
-  tickets: Types.ObjectId[]
+  ticketsIds: Types.ObjectId[]
   ticketsPrice: number
-  datePlayLottery: Types.ObjectId[]
-  admin: Types.ObjectId
+  datePlayLotteryIds: Types.ObjectId[]
+  adminId: Types.ObjectId
   price: number
 }
-export interface CreateInitialRaffleI extends Pick<RaffleI, "title" | "description" | "admin" | "price"> {}
+export interface CreateInitialRaffleI extends Pick<RaffleI, "title" | "description" | "adminId" | "price"> {}
