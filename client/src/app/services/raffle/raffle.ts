@@ -38,7 +38,8 @@ export const raffleApiSlice = apiSlice.injectEndpoints({
   }),
 })
 
-export const { useGetAllRafflesQuery, useCreateRaffleMutation, useDeleteRaffleMutation } = raffleApiSlice
+export const { useGetAllRafflesQuery, useGetRafflesByIdQuery, useCreateRaffleMutation, useDeleteRaffleMutation } =
+  raffleApiSlice
 
 export const selectRafflesResults = raffleApiSlice.endpoints.getAllRaffles.select()
 export const selectAllRaffles = createSelector(selectRafflesResults, (result) => result?.data ?? emptyRaffles)

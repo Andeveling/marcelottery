@@ -9,7 +9,8 @@ export interface LotteryI {
 export interface TicketI {
   _id: string
   positions: number
-  participantId: string
+  participant: string
+  cellphone: string
   raffleId: RaffleI['_id']
   taken: boolean
   pay: boolean
@@ -37,3 +38,7 @@ export interface RaffleI {
   updatedAt: Date
 }
 export interface RenderRafflesI extends Omit<RaffleI, 'adminId', 'updateAt', 'datePlayLotteryIds', 'ticketsIds'> {}
+
+export interface PropsI {
+  children: JSX.Element | JSX.Element[]
+}

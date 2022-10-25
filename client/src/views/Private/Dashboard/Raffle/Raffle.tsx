@@ -1,14 +1,14 @@
 import { useGetAllRafflesQuery } from '@/app/'
 import AddCircleIcon from '@mui/icons-material/AddCircle'
-import { Box, CircularProgress, Container, Grid, Typography } from '@mui/material'
+import { Box, CircularProgress, Container, Divider, Grid, Typography } from '@mui/material'
 import { Modal } from '../Modal'
+import { RaffleContextProvider } from './RaffleContext'
 import RaffleForm from './RaffleForm'
 import { RafflesCard } from './RafflesCard'
 
 export default function Raffle() {
   const { data, isLoading, isSuccess, isError } = useGetAllRafflesQuery()
-  /* const algo = useSelector(raffleApiSlice.endpoints.getRafflesById.select('6346005ba6853b12898148b6'))
-  console.log(algo) */
+
   let content
   if (isLoading) content = <CircularProgress />
   if (isSuccess && data.length === 0) content = <Typography>No hay rifas para mostrar</Typography>
@@ -30,23 +30,24 @@ export default function Raffle() {
 
   return (
     <>
-      <Grid container>
-        <Grid item xs={6}>
-          <Typography variant='h5'>Rifas</Typography>
+      <RaffleContextProvider>
+        <Grid justifyContent={'center'} alignItems={'center'} container spacing={2} mb={1}>
+          <Grid item xs={6}>
+            <Typography variant='h5'>Rifas</Typography>
+          </Grid>
+          <Grid item xs={6} display='flex' justifyContent={'end'}>
+            <Modal
+              textButton='Añadir Rifa'
+              icon={<AddCircleIcon />}
+              form={<RaffleForm />}
+              title={'Añade una nueva rifa'}
+              description={'Por favor define un nombre para la Rifa'}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={6} display='flex' justifyContent={'end'}>
-          <Modal
-            textButton='Añadir Rifa'
-            icon={<AddCircleIcon />}
-            form={<RaffleForm />}
-            title={'Añade una nueva rifa'}
-            description={'Por favor define un nombre para la Rifa'}
-          />
-        </Grid>
-      </Grid>
-      <Container>
-        <>{content}</>
-      </Container>
+        <Divider />
+        <Container sx={{ mt: 2 }}>{content}</Container>
+      </RaffleContextProvider>
     </>
   )
 }

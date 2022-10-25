@@ -3,6 +3,7 @@ import { CreateDatePlayLotteryI, CreateTikeTicketI, CreateInitialRaffleI } from 
 import DatePlayLottery from "../models/DatePlayLotteryModel"
 import Raffle from "../models/RaffleModel"
 import Ticket from "../models/TicketModel"
+import mongoose from "mongoose"
 
 export const getRaffles: RequestHandler = async (_req, res) => {
   try {
@@ -11,15 +12,19 @@ export const getRaffles: RequestHandler = async (_req, res) => {
     if (raffles) return res.json(raffles)
     else return res.json([])
   } catch (error) {
-    return res.json(error)
+    return res.status(404).json(error)
   }
 }
 
 export const getRaffle: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params
-    const raffle = await Raffle.findById(id).populate("ticketsIds")
-    return res.json(raffle)
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      const raffle = await Raffle.findById(id).populate("ticketsIds")
+      return res.json(raffle)
+    } else {
+      return res.status(404).send("id no valid")
+    }
   } catch (error) {
     return res.json(error)
   }

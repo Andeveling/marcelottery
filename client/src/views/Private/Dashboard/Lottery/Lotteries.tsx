@@ -69,10 +69,8 @@ export default function Lotteries() {
     else content = <Typography textAlign={'center'}>No hay loterias creadas</Typography>
 
   return (
-    <Grid container spacing={2} justifyContent={'center'} sx={{ mt: 1 }}>
-      <Grid item xs={12}>
-        {content}
-      </Grid>
+    <Grid container spacing={2} justifyContent={'center'} sx={{ mt: 2 }}>
+      {content}
     </Grid>
   )
 }

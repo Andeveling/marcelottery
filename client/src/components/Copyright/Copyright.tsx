@@ -2,7 +2,7 @@ import { PublicRoutes } from '@/routes'
 import { Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-export default function Copyright(props: any) {
+const Copyright = (props: any) => {
   return (
     <Typography variant='body2' color='text.secondary' align='center' {...props}>
       {'Copyright © '}
@@ -10,4 +10,9 @@ export default function Copyright(props: any) {
       {new Date().getFullYear()}
     </Typography>
   )
+}
+export default Copyright
+
+Copyright.defaultProps = {
+  props: Array(10).fill(''),
 }

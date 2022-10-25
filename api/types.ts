@@ -31,6 +31,7 @@ export interface TicketI {
   id: number | string
   positions: string | number
   participant: Types.ObjectId
+  cellphone: string
   raffleId: Types.ObjectId
   pay: boolean
   taken: boolean

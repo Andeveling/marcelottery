@@ -14,5 +14,6 @@ export const raffleValidator = yup.object().shape({
         reward: yup.string().required('Este campo es obligatorio,'),
         date: yup.date().min(new Date(), 'La fecha debe der mayor').required('Este campo es obligatorio'),
       }),
-    ),
+    )
+    .required(),
 })

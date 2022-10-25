@@ -5,14 +5,14 @@ import AuthGuard from './guards/AuthGuard'
 import { PrivateRoutes, PublicRoutes } from './routes'
 import RoutesWithNoFound from './utilities/RoutesWithNoFound'
 import { Home } from '@/views'
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider, CircularProgress } from '@mui/material'
 import { theme } from '@/Theme'
 
 const Private = lazy(() => import('@/views/Private/Private'))
 
 function App() {
   return (
-    <Suspense fallback={<>Loading...</>}>
+    <Suspense fallback={<CircularProgress size={200} />}>
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Navbar />
