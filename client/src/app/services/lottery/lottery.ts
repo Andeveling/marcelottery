@@ -13,7 +13,7 @@ export const lotteryApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ['Lottery'],
     }),
-    getLottery: builder.query({
+    getLottery: builder.query<LotteryRenderI, LotteryRenderI['_id']>({
       query: (id) => `/lottery/:${id}`,
     }),
     createLottery: builder.mutation({

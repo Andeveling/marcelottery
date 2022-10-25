@@ -7,7 +7,7 @@ const raffle = Router()
 raffle.get("/raffles", RaffleCtrl.getRaffles)
 raffle.get("/raffle", RaffleCtrl.getRaffle)
 raffle.post("/raffle", authorization, RaffleCtrl.createRaffle)
-raffle.put("/raffle", RaffleCtrl.updateRaffle)
-raffle.delete("/raffle", RaffleCtrl.deleteRaffle)
+raffle.put("/raffle", authorization, RaffleCtrl.updateRaffle)
+raffle.delete("/raffle/:id", authorization, RaffleCtrl.deleteRaffle)
 
 export default raffle

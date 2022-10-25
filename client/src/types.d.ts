@@ -1,8 +1,9 @@
+/* eslint-disable no-use-before-define */
 export interface LotteryI {
   _id: string
   title: string
-  createdAt: date
-  updatedAt: date
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface TicketI {
@@ -12,26 +13,26 @@ export interface TicketI {
   raffleId: RaffleI['_id']
   taken: boolean
   pay: boolean
-  createdAt: date
-  updatedAt: date
+  createdAt: Date
+  updatedAt: Date
 }
 export interface DatePlayLotteryIdsI {
   _id: string
   lotteryId: LotteryI['_id']
   reward: string
-  date: date
-  createdAt: date
-  updatedAt: date
+  date: Date
+  createdAt: Date
+  updatedAt: Date
 }
 
 export interface RaffleI {
+  _id: string
   title: string
   description: string
-  datePlayLotteryIds: DatePlayLotteryIdsI['_id'][]
-  ticketsIds: TicketI['_id'][]
+  datePlayLotteryIds: DatePlayLotteryIdsI[]
+  ticketsIds: TicketI[]
   adminId: string
   price: number
-  _id: string
   createdAt: Date
   updatedAt: Date
 }

@@ -11,7 +11,7 @@ export const raffleValidator = yup.object().shape({
     .of(
       yup.object().shape({
         lotteryId: yup.string().required('Este campo es obligatorio, seleccione por favor una loteria'),
-        reward: yup.number().required('Este campo es obligatorio,'),
+        reward: yup.string().required('Este campo es obligatorio,'),
         date: yup.date().min(new Date(), 'La fecha debe der mayor').required('Este campo es obligatorio'),
       }),
     ),

@@ -1,13 +1,13 @@
 import { RequestHandler } from "express"
 import { CreateDatePlayLotteryI, CreateTikeTicketI, CreateInitialRaffleI } from "../../types"
-import DatePlayLotteryModel from "../models/DatePlayLotteryModel"
+import DatePlayLottery from "../models/DatePlayLotteryModel"
 import Raffle from "../models/RaffleModel"
 import Ticket from "../models/TicketModel"
 
 export const getRaffles: RequestHandler = async (_req, res) => {
   try {
     // Padre Raffle
-    const raffles = await Raffle.find().populate("ticketsIds").populate("datePlayLotteryIds")
+    const raffles = await Raffle.find().populate("datePlayLotteryIds")
     if (raffles) return res.json(raffles)
     else return res.json([])
   } catch (error) {
@@ -15,9 +15,14 @@ export const getRaffles: RequestHandler = async (_req, res) => {
   }
 }
 
-export const getRaffle: RequestHandler = async () => {
+export const getRaffle: RequestHandler = async (req, res) => {
   try {
-  } catch (error) {}
+    const { id } = req.params
+    const raffle = await Raffle.findById(id).populate("ticketsIds")
+    return res.json(raffle)
+  } catch (error) {
+    return res.json(error)
+  }
 }
 
 export const createRaffle: RequestHandler = async (req, res) => {
@@ -27,8 +32,9 @@ export const createRaffle: RequestHandler = async (req, res) => {
     const newRaffle = await Raffle.create<CreateInitialRaffleI>({ title, description, adminId, price })
 
     for (const dateItem of datePlayLottery) {
-      const newDatePlayLottery = await DatePlayLotteryModel.create<CreateDatePlayLotteryI>({
+      const newDatePlayLottery = await DatePlayLottery.create<CreateDatePlayLotteryI>({
         lotteryId: dateItem.lotteryId,
+        raffleId: newRaffle._id,
         date: dateItem.date,
         reward: dateItem.reward,
       })
@@ -36,7 +42,7 @@ export const createRaffle: RequestHandler = async (req, res) => {
     }
 
     for (let i = 0; i < cant; i++) {
-      const newTicket = await Ticket.create<CreateTikeTicketI>({ positions: i, raffle: newRaffle._id })
+      const newTicket = await Ticket.create<CreateTikeTicketI>({ positions: i, raffleId: newRaffle._id })
       await newRaffle.updateOne({ $push: { ticketsIds: newTicket._id } })
     }
     await newRaffle.save()
@@ -50,7 +56,14 @@ export const updateRaffle: RequestHandler = async () => {
   try {
   } catch (error) {}
 }
-export const deleteRaffle: RequestHandler = async () => {
+export const deleteRaffle: RequestHandler = async (req, res) => {
   try {
-  } catch (error) {}
+    const { id: raffleId } = req.params
+    await DatePlayLottery.deleteMany({ raffleId })
+    await Ticket.deleteMany({ raffleId })
+    await Raffle.deleteOne({ _id: raffleId })
+    return res.send("Borrado con exito")
+  } catch (error) {
+    return error
+  }
 }

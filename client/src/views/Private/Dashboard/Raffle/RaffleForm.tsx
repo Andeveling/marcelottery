@@ -8,7 +8,7 @@ import { FieldArray, FormikProvider, getIn, useFormik } from 'formik'
 import { raffleValidator } from './raffleValidators'
 
 export default function RaffleForm() {
-  const [createRaffle, { isLoading, isSuccess, data }] = useCreateRaffleMutation()
+  const [createRaffle, { isLoading, isSuccess, data, isError, error }] = useCreateRaffleMutation()
   const allLotteries = useGetAllLotteriesQuery()
   const auth = useAuth()
 
@@ -22,15 +22,20 @@ export default function RaffleForm() {
       datePlayLottery: [
         {
           lotteryId: null,
-          reward: 0,
+          reward: '',
           date: '',
         },
       ],
     },
     validationSchema: raffleValidator,
-    onSubmit: (values, { resetForm }) => {
-      console.log(values)
-      resetForm()
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        await createRaffle(values)
+
+        resetForm()
+      } catch (error) {
+        console.log(error)
+      }
     },
   })
 
@@ -113,11 +118,11 @@ export default function RaffleForm() {
                   const lotteryId = `datePlayLottery[${index}].lotteryId`
                   const touchedLotteryId = getIn(formik.touched, lotteryId)
                   const errorLotteryId = getIn(formik.errors, lotteryId)
-                  //---
+                  // ---
                   const reward = `datePlayLottery[${index}].reward`
                   const touchedReward = getIn(formik.touched, reward)
                   const errorReward = getIn(formik.errors, reward)
-                  //---
+                  // ---
                   const date = `datePlayLottery[${index}].date`
                   const touchedDate = getIn(formik.touched, date)
                   const errorDate = getIn(formik.errors, date)
@@ -149,13 +154,10 @@ export default function RaffleForm() {
                         margin='normal'
                         variant='outlined'
                         label='Premio del sorteo'
-                        type='number'
+                        type='text'
                         name={reward}
                         value={lottery.reward}
                         required
-                        InputProps={{
-                          startAdornment: <InputAdornment position='start'>$</InputAdornment>,
-                        }}
                         helperText={touchedReward && errorReward ? errorReward : ''}
                         error={Boolean(touchedReward && errorReward)}
                         onChange={formik.handleChange}
@@ -204,8 +206,12 @@ export default function RaffleForm() {
         <Box height={100} mt={3} textAlign='center'>
           {isSuccess ? (
             <Alert severity='success' sx={{ textAlign: 'center' }}>
-              <AlertTitle>Loteria {data.title}</AlertTitle>
+              <AlertTitle>Riffa creada {data.title}</AlertTitle>
               ha sido agredada con exito!
+            </Alert>
+          ) : isError && error ? (
+            <Alert severity='error' sx={{ textAlign: 'center' }}>
+              <AlertTitle>Ocurrio un error intenta de nuevo</AlertTitle>
             </Alert>
           ) : (
             <></>

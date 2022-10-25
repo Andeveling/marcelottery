@@ -1,12 +1,9 @@
 import { useCreateLotteryMutation } from '@/app/services/'
-import { useAuth } from '@/hooks'
-import { Alert, AlertTitle, Grid } from '@mui/material'
+import { Alert, AlertTitle } from '@mui/material'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import { useFormik } from 'formik'
-import { useEffect } from 'react'
-import Swal from 'sweetalert2'
 import { lotteryValidator } from './lotteryValidators'
 
 export default function LotteryForm() {

@@ -5,7 +5,7 @@ export const TicketSchema = new Schema<TicketI>(
   {
     positions: { type: Number, indexes: true },
     participant: { type: Schema.Types.ObjectId, ref: "Participant", default: null },
-    raffle: { type: Schema.Types.ObjectId, ref: "Raffle", required: true },
+    raffleId: { type: Schema.Types.ObjectId, ref: "Raffle", required: true },
     taken: { type: Boolean, default: false },
     pay: { type: Boolean, default: false },
   },
